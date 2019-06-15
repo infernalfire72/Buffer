@@ -9,24 +9,25 @@
 class buffer {
 	public:
 		buffer();
-		void writeByte(uint8_t data);
-		void writeInt16(int16_t data);
-		void writeInt32(int32_t data);
-		void writeInt64(int64_t data);
-		void writeSByte(int8_t data);
-		void writeUInt16(uint16_t data);
-		void writeUInt32(uint32_t data);
-		void writeUInt64(uint64_t data);
-		void writeFloat(float data);
-		void writeDouble(double data);
-		void write7BitInt(int32_t data);
-		void writeString(std::string data);
-		void writeChar(char data);
+		void writeByte(const uint8_t& data);
+		void writeInt16(const int16_t& data);
+		void writeInt32(const int32_t& data);
+		void writeInt64(const int64_t& data);
+		void writeSByte(const int8_t& data);
+		void writeUInt16(const uint16_t& data);
+		void writeUInt32(const uint32_t& data);
+		void writeUInt64(const uint64_t& data);
+		void writeFloat(const float& data);
+		void writeDouble(const double& data);
+		void write7BitInt(const int32_t& data);
+		void writeString(const std::string& data);
+		void writeChar(const char& data);
 		
 		size_t size();
-		int setStreamPosition(int pos);
+		int setStreamPosition(const int& pos);
 		int getStreamPosition();
-		int seekPosition(int pos);
+		int seekPosition(const int& pos);
+		void clear();
 		
 		uint8_t readByte();
 		int8_t readSByte();

@@ -11,29 +11,29 @@ buffer::buffer()
 }
 
 #pragma region writing
-void buffer::writeByte(uint8_t data) 
+void buffer::writeByte(const uint8_t& data) 
 {
 	dynamicData.push_back(data);
 }
 
-void buffer::writeSByte(int8_t data)
+void buffer::writeSByte(const int8_t& data)
 {
 	dynamicData.push_back(data);
 }
 
-void buffer::writeInt16(int16_t data) 
+void buffer::writeInt16(const int16_t& data) 
 {
 	dynamicData.push_back((uint8_t)data);
 	dynamicData.push_back((uint8_t)(data >> 8));
 }
 
-void buffer::writeUInt16(uint16_t data) 
+void buffer::writeUInt16(const uint16_t& data) 
 {
 	dynamicData.push_back((uint8_t)data);
 	dynamicData.push_back((uint8_t)(data >> 8));
 }
 
-void buffer::writeInt32(int32_t data)
+void buffer::writeInt32(const int32_t& data)
 {
 	dynamicData.push_back((uint8_t)data);
     dynamicData.push_back((uint8_t)(data >> 8));
@@ -41,7 +41,7 @@ void buffer::writeInt32(int32_t data)
     dynamicData.push_back((uint8_t)(data >> 24));
 }
 
-void buffer::writeUInt32(uint32_t data)
+void buffer::writeUInt32(const uint32_t& data)
 {
 	dynamicData.push_back((uint8_t)data);
     dynamicData.push_back((uint8_t)(data >> 8));
@@ -49,7 +49,7 @@ void buffer::writeUInt32(uint32_t data)
     dynamicData.push_back((uint8_t)(data >> 24));
 }
 
-void buffer::writeInt64(int64_t data)
+void buffer::writeInt64(const int64_t& data)
 {
 	dynamicData.push_back((uint8_t)data);
     dynamicData.push_back((uint8_t)(data >> 8));
@@ -61,7 +61,7 @@ void buffer::writeInt64(int64_t data)
 	dynamicData.push_back((uint8_t)(data >> 56));
 }
 
-void buffer::writeUInt64(uint64_t data)
+void buffer::writeUInt64(const uint64_t& data)
 {
 	dynamicData.push_back((uint8_t)data);
     dynamicData.push_back((uint8_t)(data >> 8));
@@ -73,19 +73,19 @@ void buffer::writeUInt64(uint64_t data)
 	dynamicData.push_back((uint8_t)(data >> 56));
 }
 
-void buffer::writeFloat(float data)
+void buffer::writeFloat(const float& data)
 {
 	uint32_t TmpValue = *(uint32_t*)&data;
     writeUInt32(TmpValue);
 }
 
-void buffer::writeDouble(double data)
+void buffer::writeDouble(const double& data)
 {
 	uint64_t TmpValue = *(uint64_t*)&data;
 	writeUInt64(TmpValue);
 }
 
-void buffer::write7BitInt(int32_t data)
+void buffer::write7BitInt(const int32_t& data)
 {
 	uint32_t v = (uint32_t)data;
     while (v >= 0x80)
@@ -96,12 +96,12 @@ void buffer::write7BitInt(int32_t data)
     writeByte((uint8_t)v);
 }
 
-void buffer::writeChar(char data) 
+void buffer::writeChar(const char& data) 
 {
 	writeByte(data);
 }
 
-void buffer::writeString(std::string data) 
+void buffer::writeString(const std::string& data) 
 {
 	write7BitInt(data.length());
 	for(int i = 0; i < data.length(); i++) writeChar(data[i]);
@@ -115,7 +115,7 @@ size_t buffer::size()
 	return dynamicData.size();
 }
 
-int buffer::setStreamPosition(int pos)
+int buffer::setStreamPosition(const int& pos)
 {
 	streamPosition = pos;
 	return streamPosition;
@@ -126,7 +126,7 @@ int buffer::getStreamPosition()
 	return streamPosition;
 }
 
-int buffer::seekPosition(int pos) 
+int buffer::seekPosition(const int& pos) 
 {
 	return (int)dynamicData[pos];
 }
@@ -134,6 +134,11 @@ int buffer::seekPosition(int pos)
 uint8_t buffer::readByte()
 {
 	return dynamicData[streamPosition++];
+}
+
+void buffer::clear()
+{
+	dynamicData.clear();
 }
 #pragma endregion operations
 
