@@ -43,7 +43,6 @@ class buffer {
 		float readFloat();
 	private:
 		int streamPosition;
-	protected:
 		std::vector<uint8_t> dynamicData;
 };
 
