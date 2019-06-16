@@ -45,5 +45,5 @@ class buffer {
 		int streamPosition;
 		std::vector<uint8_t> dynamicData;
 };
-
+#include "buffer.cpp"
 #endif // BUFFER_H
