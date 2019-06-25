@@ -35,26 +35,26 @@ void buffer::writeUInt16(const uint16_t& data)
 
 void buffer::writeInt32(const int32_t& data)
 {
-	buf.resize(buf.size() + 4);
-	*(int32_t*)&buf[buf.size() - 4] = Value;
+	dynamicData.resize(dynamicData.size() + 4);
+	*(int32_t*)&dynamicData[dynamicData.size() - 4] = data;
 }
 
 void buffer::writeUInt32(const uint32_t& data)
 {
-	buf.resize(buf.size() + 4);
-	*(uint32_t*)&buf[buf.size() - 4] = Value;
+	dynamicData.resize(dynamicData.size() + 4);
+	*(uint32_t*)&dynamicData[dynamicData.size() - 4] = data;
 }
 
 void buffer::writeInt64(const int64_t& data)
 {
-	buf.resize(buf.size() + 8);
-	*(int64_t*)&buf[buf.size() - 8] = Value;
+	dynamicData.resize(dynamicData.size() + 8);
+	*(int64_t*)&dynamicData[dynamicData.size() - 8] = data;
 }
 
 void buffer::writeUInt64(const uint64_t& data)
 {
-	buf.resize(buf.size() + 8);
-	*(uint64_t*)&buf[buf.size() - 8] = Value;
+	dynamicData.resize(dynamicData.size() + 8);
+	*(uint64_t*)&dynamicData[dynamicData.size() - 8] = data;
 }
 
 void buffer::writeFloat(const float& data)
