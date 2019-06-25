@@ -35,42 +35,26 @@ void buffer::writeUInt16(const uint16_t& data)
 
 void buffer::writeInt32(const int32_t& data)
 {
-	dynamicData.push_back((uint8_t)data);
-    dynamicData.push_back((uint8_t)(data >> 8));
-    dynamicData.push_back((uint8_t)(data >> 16));
-    dynamicData.push_back((uint8_t)(data >> 24));
+	buf.resize(buf.size() + 4);
+	*(int32_t*)&buf[buf.size() - 4] = Value;
 }
 
 void buffer::writeUInt32(const uint32_t& data)
 {
-	dynamicData.push_back((uint8_t)data);
-    dynamicData.push_back((uint8_t)(data >> 8));
-    dynamicData.push_back((uint8_t)(data >> 16));
-    dynamicData.push_back((uint8_t)(data >> 24));
+	buf.resize(buf.size() + 4);
+	*(uint32_t*)&buf[buf.size() - 4] = Value;
 }
 
 void buffer::writeInt64(const int64_t& data)
 {
-	dynamicData.push_back((uint8_t)data);
-    dynamicData.push_back((uint8_t)(data >> 8));
-    dynamicData.push_back((uint8_t)(data >> 16));
-    dynamicData.push_back((uint8_t)(data >> 24));
-	dynamicData.push_back((uint8_t)(data >> 32));
-	dynamicData.push_back((uint8_t)(data >> 40));
-	dynamicData.push_back((uint8_t)(data >> 48));
-	dynamicData.push_back((uint8_t)(data >> 56));
+	buf.resize(buf.size() + 8);
+	*(int64_t*)&buf[buf.size() - 8] = Value;
 }
 
 void buffer::writeUInt64(const uint64_t& data)
 {
-	dynamicData.push_back((uint8_t)data);
-    dynamicData.push_back((uint8_t)(data >> 8));
-    dynamicData.push_back((uint8_t)(data >> 16));
-    dynamicData.push_back((uint8_t)(data >> 24));
-	dynamicData.push_back((uint8_t)(data >> 32));
-	dynamicData.push_back((uint8_t)(data >> 40));
-	dynamicData.push_back((uint8_t)(data >> 48));
-	dynamicData.push_back((uint8_t)(data >> 56));
+	buf.resize(buf.size() + 8);
+	*(uint64_t*)&buf[buf.size() - 8] = Value;
 }
 
 void buffer::writeFloat(const float& data)
