@@ -88,7 +88,8 @@ void buffer::writeChar(const char& data)
 void buffer::writeString(const std::string& data) 
 {
 	write7BitInt(data.length());
-	for(int i = 0; i < data.length(); i++) writeChar(data[i]);
+	dynamicData.resize(dynamicData.size() + data.size());
+	memcpy(&dynamicData[dynamicData.size() - data.size()], &data[0], data.size());
 }
 
 #pragma endregion
